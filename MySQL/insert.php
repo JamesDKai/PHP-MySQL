@@ -32,6 +32,9 @@
             $password = validateFormData($_POST["password"]);
         }
 
+        $password = password_hash("$password", PASSWORD_DEFAULT);
+
+        // check to see if each variable has data
         if($username && $email && $password) {
             $query = "  INSERT INTO users (id, username, password, email, signup_date, biography)
               VALUES (NULL, '$username', '$password', '$email', CURRENT_TIMESTAMP, NULL)";
@@ -51,7 +54,7 @@
     VALUES (NULL, 'jacksonsmith', 'abc123', 'jack@son.com', CURRENT_TIMESTAMP, 'Hello! I'm Jackson. This is my bio.');
 
     */
-    
+
     mysqli_close($connection);
  ?>
 
